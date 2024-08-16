@@ -1,0 +1,26 @@
+import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
+import { createInput, createLabel } from "a1-sauce/Settings/Components/Builders/input";
+
+export const createNumberSetting = (
+	name: string,
+	description: string,
+	options: {
+		defaultValue?: number;
+		min?: number;
+		max?: number;
+	} = {}
+): HTMLElement => {
+	const {
+		defaultValue = options.defaultValue ?? 10,
+		min = options.min ?? 1,
+		max = options.max ?? 20,
+	} = options;
+	const input = createInput('number', name, defaultValue);
+	input.setAttribute('min', min.toString());
+	input.setAttribute('max', max.toString());
+	const label = createLabel(name, description);
+	const container = createFlexContainer(['reverse-setting']);
+	container.appendChild(input);
+	container.appendChild(label);
+	return container;
+}
