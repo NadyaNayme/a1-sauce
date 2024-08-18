@@ -1,6 +1,5 @@
 import { DropdownOption } from './Components';
 import * as Library from './Library/index';
-import * as Storage from './Storage/index';
 
 export enum SettingsType {
 	Alarm = 'alarm',
@@ -22,7 +21,10 @@ export enum SettingsType {
 export class SettingsManager {
 	static #instance: SettingsManager;
 	name: string = '';
-	settings: HTMLElement[] | null = null;
+	majorVersion: number = 0;
+	minorVersion: number = 0;
+	patchVersion: number = 0;
+	settings: HTMLElement[] = [];
 
 	private constructor() {}
 
@@ -61,12 +63,13 @@ export class SettingsManager {
 	};
 
 	public addButton = (
+		name: string,
 		content: string,
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 		fn: Function,
 		options: { classes: Array<string> }
 	): SettingsManager => {
-		this.settings?.push(Library.createButton(content, fn, options));
+		this.settings?.push(Library.createButton(name, content, fn, options));
 		return this;
 	};
 
@@ -95,6 +98,27 @@ export class SettingsManager {
 				options
 			)
 		);
+		return this;
+	};
+
+	public addHeader = (size: string, content: string): SettingsManager => {
+		this.settings?.push(Library.createHeading(size, content));
+		console.log(this.settings);
+		return this;
+	};
+
+	public addText = (content: string): SettingsManager => {
+		this.settings?.push(Library.createText(content));
+		return this;
+	};
+
+	public addSmallText = (content: string): SettingsManager => {
+		this.settings?.push(Library.createSmallText(content));
+		return this;
+	};
+
+	public addSeperator = (): SettingsManager => {
+		this.settings?.push(Library.createSeperator());
 		return this;
 	};
 
@@ -148,15 +172,15 @@ export class SettingsManager {
 	public build = (): void => {
 		const settings = this.getSettings();
 		if (settings === null)
-			throw new Error(
-				'Settings are empty - please .add() settings before building'
+			throw new Error (
+				'Settings are empty - add settings before calling build()'
 			);
 		const container = document.createElement('div');
 		container.id = 'Settings';
 		for (let i = 0; i < settings.length; i++) {
-			container.appendChild(settings[i]);
+			container.append(settings[i]);
 		}
-		document.append(container);
+		document.body.append(container);
 	};
 }
 

@@ -1,5 +1,5 @@
-import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
-import { createDropdown, createLabel, DropdownOption } from "a1-sauce/Settings/Components/Builders/input";
+import { createDropdown, createFlexContainer, createLabel, DropdownOption } from "../../Components";
+
 
 export const createDropdownSetting = (
 	name: string,
@@ -9,6 +9,7 @@ export const createDropdownSetting = (
 ): HTMLElement => {
 	const select = createDropdown(name, defaultValue, options);
 	const label = createLabel(name, description);
+	select.id = name;
 	const container = createFlexContainer(['reverse-setting']);
 	container.appendChild(select);
 	container.appendChild(label);

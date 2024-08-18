@@ -56,7 +56,7 @@ export const loadSettings = (): void => {
 }
 
 export const settingsExist = (): void => {
-	if (!localStorage[sauce.Settings.getName()]) {
+	if (!localStorage[sauce.getName()]) {
 		setDefaultSettings();
 	} else {
 		loadSettings();
@@ -64,18 +64,18 @@ export const settingsExist = (): void => {
 }
 
 export const getSetting = (setting: string) => {
-	if (!localStorage[sauce.Settings.getName()]) {
-		localStorage.setItem(sauce.Settings.getName(), JSON.stringify({}));
+	if (!localStorage[sauce.getName()]) {
+		localStorage.setItem(sauce.getName(), JSON.stringify({}));
 		setDefaultSettings();
 	}
-	return JSON.parse(localStorage[sauce.Settings.getName()])[setting];
+	return JSON.parse(localStorage[sauce.getName()])[setting];
 }
 
 export const updateSetting = (setting: string, value: unknown) => {
-	if (!localStorage.getItem(sauce.Settings.getName())) {
-		localStorage.setItem(sauce.Settings.getName(), JSON.stringify({}));
+	if (!localStorage.getItem(sauce.getName())) {
+		localStorage.setItem(sauce.getName(), JSON.stringify({}));
 	}
-	const save_data = JSON.parse(localStorage[sauce.Settings.getName()]);
+	const save_data = JSON.parse(localStorage[sauce.getName()]);
 	save_data[setting] = value;
-	localStorage.setItem(sauce.Settings.getName(), JSON.stringify(save_data));
+	localStorage.setItem(sauce.getName(), JSON.stringify(save_data));
 }

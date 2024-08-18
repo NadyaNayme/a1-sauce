@@ -1,5 +1,5 @@
-import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
-import { createInput, createLabel } from "a1-sauce/Settings/Components/Builders/input";
+import { createFlexContainer, createInput, createLabel } from "../../Components";
+
 
 export const createNumberSetting = (
 	name: string,
@@ -16,6 +16,7 @@ export const createNumberSetting = (
 		max = options.max ?? 20,
 	} = options;
 	const input = createInput('number', name, defaultValue);
+	input.id = name;
 	input.setAttribute('min', min.toString());
 	input.setAttribute('max', max.toString());
 	const label = createLabel(name, description);

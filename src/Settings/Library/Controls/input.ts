@@ -1,5 +1,5 @@
-import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
-import { createInput, createLabel } from "a1-sauce/Settings/Components/Builders/input";
+import { createFlexContainer, createInput, createLabel } from "../../Components";
+
 
 export const createTextSetting = (
 	name: string,
@@ -7,6 +7,7 @@ export const createTextSetting = (
 	defaultValue: string
 ): HTMLElement => {
 	const input = createInput('text', name, defaultValue);
+	input.id = name;
 	const label = createLabel(name, description);
 	label.setAttribute('for', name);
 	const container = createFlexContainer();

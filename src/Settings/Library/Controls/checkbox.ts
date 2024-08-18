@@ -1,6 +1,6 @@
-import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
-import { createCheckboxInput, createLabel } from "a1-sauce/Settings/Components/Builders/input";
-import { updateSetting } from "a1-sauce/Settings/Storage";
+import { createCheckboxInput, createFlexContainer, createLabel } from "../../Components";
+import { updateSetting } from "../../Storage";
+
 
 export const createCheckboxSetting = (
 	name: string,
@@ -12,6 +12,7 @@ export const createCheckboxSetting = (
 	const checkboxLabel = createLabel(name, '');
 	const checkbox = document.createElement('span');
 	checkbox.classList.add('checkbox');
+	checkbox.id = name;
 	const container = createFlexContainer(['reverse-setting']);
 	checkboxLabel.appendChild(input);
 	checkboxLabel.appendChild(checkbox);

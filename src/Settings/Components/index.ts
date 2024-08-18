@@ -5,6 +5,5 @@
  */
 
 export * from './Builders/container';
-export * from './Builders/seperator';
+export * from '../Library/Controls/seperator';
 export * from './Builders/input';
-export * from './Builders/text';

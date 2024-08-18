@@ -1,8 +1,9 @@
-import { createFlexContainer } from "a1-sauce/Settings/Components/Builders/container";
-import { createDropdown, DropdownOption } from "a1-sauce/Settings/Components/Builders/input";
-import { createText } from "a1-sauce/Settings/Components/Builders/text";
+import { createDropdown, createFlexContainer, DropdownOption } from "../../Components";
 import { createCheckboxSetting } from "./checkbox";
 import { createRangeSetting } from "./range";
+import { createText } from "./text";
+
+import '../Styles/alarm.css';
 
 const alarms: DropdownOption[] = [
 	{ name: 'alarm2', value: './resource/alarms/alarm2.wav' },
@@ -41,6 +42,7 @@ export const createAlarmSetting = (
 		false
 	);
 	activeCheckbox.classList.add('alarm-active');
+	activeCheckbox.style.marginRight = '20px';
 	const alertDropdown = createDropdown(name + 'AlertSound', '', alarms);
 	alertDropdown.classList.add('full');
 	alertDropdown.style.marginBottom = '5px';
@@ -61,13 +63,14 @@ export const createAlarmSetting = (
 	alarmSoundText.style.paddingTop = '0px';
 	alarmSoundText.style.marginTop = '0px';
 
-	const volumeText = createText('Volume:');
-	volumeText.style.marginTop = '5px';
-	volumeText.style.marginRight = '15px';
+	const volumeText = createText('Volume');
+	volumeText.style.marginTop = '-1px';
+	volumeText.style.marginRight = '5px';
 	volumeText.classList.add('half');
 	volumeText.style.paddingTop = '0px';
 
 	const container = createFlexContainer(['flex-wrap']);
+	container.classList.add('alarm-setting');
 	if (classes.length) {
 		for (let i = classes.length; i--; i >= 0) {
 			container.classList.add(classes[i]);
