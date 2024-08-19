@@ -1,35 +1,12 @@
+// Typescript configuration file
 {
 	"compilerOptions": {
-		"rootDir": "./src",
-		"moduleResolution": "node16",
-		"module": "Node16",
-		"lib": ["es6", "dom"],
-		"paths": {
-			"a1-sauce/*": ["./src/*"]
-		},
-		"target": "ES2017",
-		"alwaysStrict": true,
-		"jsx": "react",
-		"allowJs": false,
-		"baseUrl": ".",
-		"strictNullChecks": true,
-		"strictPropertyInitialization": false,
-		"experimentalDecorators": true,
-		"sourceMap": true,
-		"declaration": true,
-		"declarationMap": true,
-		"declarationDir": "./dist",
-		"outDir": "./dist",
-		"esModuleInterop": true
-	},
-	"include": ["./src"],
-	"exclude": [
-		"node_modules",
-		"./types/*",
-		"./scripts/**",
-		"**/webpack.config.ts",
-		"./dist/**",
-		"tests"
-	],
-	"compileOnSave": false
+		"target": "es2017",
+		// Settings to make typescript play nice with webpack
+		"resolvePackageJsonExports": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "bundler",
+		"module": "ESNext",
+		"lib": ["es2020", "dom"]
+	}
 }

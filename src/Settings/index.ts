@@ -45,7 +45,6 @@ export class SettingsManager {
 	};
 
 	public addAlarmSetting = (
-		headerText: string,
 		name: string,
 		description: string,
 		options?: {
@@ -57,7 +56,7 @@ export class SettingsManager {
 		}
 	): SettingsManager => {
 		this.settings?.push(
-			Library.createAlarmSetting(headerText, name, description, options)
+			Library.createAlarmSetting(name, description, options)
 		);
 		return this;
 	};
@@ -87,7 +86,7 @@ export class SettingsManager {
 	public addDropdownSetting = (
 		name: string,
 		description: string,
-		defaultValue: unknown,
+		defaultValue: number,
 		options: DropdownOption[]
 	): SettingsManager => {
 		this.settings?.push(
